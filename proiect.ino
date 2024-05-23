@@ -1,4 +1,4 @@
-//#include <DHT11.h>
+//Copyright Raducanu George-Cristian 331CA 2023-204
 #include <SD.h>
 #include <SPI.h>
 #include <LiquidCrystal_I2C.h>
@@ -12,16 +12,14 @@ int distance_treshold = 15;
 DistanceSensor sensor(9, 8);
 #define buzzer 4
 #define SD_CS 10
-// pt sd portul 4
+// pt sd portul 10
 File myFile; // pentru fisiere
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 int MY_TIME_CMP = 5;
 #define NUM_MEASURES 5
 
-//const int receiver = 6; // Signal Pin of IR receiver to Arduino Digital Pin 11
 
-/*-----( Declare objects )-----*/ // pentru telecomanda
 IRrecv irrecv(6);     // create instance of 'irrecv'
 decode_results results;      // create instance of 'decode_results'
 
@@ -154,31 +152,9 @@ void setup() {
     // open a new file and immediately close it:
     Serial.println("Creating example.txt...");
     
-    //myFile = SD.open("example.txt", FILE_WRITE);
+    myFile = SD.open("example.txt", FILE_WRITE);
     
-    //myFile.close();
-
-    // myFile.println("Hello World om");
-    // myFile.println("Hai sa iasa la PM");
-
-    // // Check to see if the file exists:
-    // if (SD.exists("example.txt")) {
-    //   Serial.println("example.txt exists.");
-    // } else {
-    //   Serial.println("example.txt doesn't exist.");
-    // }
-    //myFile.close();
-
-  // delete the file:
-  // Serial.println("Removing example.txt...");
-  // SD.remove("example.txt");
-
-  // if (SD.exists("example.txt")) {
-  //   Serial.println("example.txt exists.");
-  // } else {
-  //   Serial.println("example.txt doesn't exist.");
-  // }
-    
+    myFile.close();
 }
 
 void loop() {
